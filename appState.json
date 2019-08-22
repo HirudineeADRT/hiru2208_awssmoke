@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "hiru2208_awssmoke/lambda.js",
-        "code": "exports.handler = function(event, context, callback) {\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n}",
+        "code": "let AWS = require('aws-sdk');\nconst s3 = new AWS.S3();\n\nexports.handler = function (event, context, callback) {\n    s3.listObjects({\n        'Bucket': 'as2-test-lahiru1',\n        'MaxKeys': 10,\n        'Prefix': ''\n    }).promise()\n        .then(data => {\n            console.log(data);           // successful response\n            /*\n            data = {\n                Contents: [\n                    {\n                       ETag: \"\\\"70ee1738b6b21e2c8a43f3a5ab0eee71\\\"\",\n                       Key: \"example1.jpg\",\n                       LastModified: \"<Date Representation>\",\n                       Owner: {\n                          DisplayName: \"myname\",\n                          ID: \"12345example25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc\"\n                       },\n                       Size: 11,\n                       StorageClass: \"STANDARD\"\n                    },\n                    // {...}\n                ]\n            }\n            */\n        })\n        .catch(err => {\n            console.log(err, err.stack); // an error occurred\n        });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -33,12 +33,19 @@
         },
         "triggers": [
           {
-            "resourceName": "sqshirutest",
-            "config": {
-              "BatchSize": "10"
-            }
+            "resourceName": "apigusEast1HiruAPI135asyncpost",
+            "config": {}
           }
-        ]
+        ],
+        "testCases": {
+          "ec464361-6ef3-4dd1-8255-9f9d162377a6": {
+            "id": "ec464361-6ef3-4dd1-8255-9f9d162377a6",
+            "name": "Test event",
+            "functionId": "6906700b-b20a-4c33-961a-254bd0863128",
+            "event": "{\r\n    \"key1\": \"value1\",\r\n    \"key2\": \"value2\",\r\n    \"key3\": \"value3\"\r\n}",
+            "eventTemplate": "hello-world"
+          }
+        }
       }
     },
     "deletedFiles": [],
@@ -53,7 +60,7 @@
         "type": "SQS",
         "config": {
           "mode": 0,
-          "existing": false,
+          "existing": true,
           "name": "hirutest",
           "url": "https://sqs.us-east-1.amazonaws.com/318300609668/hirutest",
           "selectedRegion": "us-east-1",
@@ -72,7 +79,38 @@
           "maximumMessageSize": 256,
           "receiveMessageWaitTime": 0,
           "deadLetterQueueName": "",
-          "contentBasedDeduplication": false
+          "contentBasedDeduplication": false,
+          "createdByApp": true
+        }
+      },
+      "apigusEast1HiruAPI135asyncpost": {
+        "name": "apigusEast1HiruAPI135asyncpost",
+        "type": "API_GATEWAY",
+        "config": {
+          "selectedRegion": "us-east-1",
+          "apiMode": 0,
+          "apiName": "HiruAPI",
+          "endpointType": "EDGE",
+          "resourceMode": 0,
+          "resourceName": "135/async",
+          "resourcePath": "/135/async",
+          "restMethod": "POST",
+          "proxyIntegration": false,
+          "enableCORS": false,
+          "stageMode": 0,
+          "stageName": "Test",
+          "mode": 0
+        }
+      },
+      "s3as2TestLahiru": {
+        "name": "s3as2TestLahiru",
+        "type": "S3",
+        "config": {
+          "mode": 1,
+          "bucket": {
+            "region": "us-east-1",
+            "name": "as2-test-lahiru"
+          }
         }
       }
     },
@@ -91,7 +129,15 @@
       }
     ],
     "packageJSON": {
-      "dependencies": {}
+      "dependencies": {
+        "aws-sdk": {
+          "name": "aws-sdk",
+          "language": "javascript",
+          "version": "2.176.0",
+          "dev": true,
+          "notRemovable": false
+        }
+      }
     }
   },
   "PROJECT_META": {
@@ -101,7 +147,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1566453728049
+    "lastSave": 1566455645729
   },
   "VCS_STATE": {
     "provider": "GitHub",
