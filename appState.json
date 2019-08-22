@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "hiru2208_awssmoke/lambda.js",
-        "code": "exports.handler = function(event, context, callback) {\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "code": "exports.handler = function(event, context, callback) {\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n}",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -65,7 +65,7 @@
           "accountId": "318300609668",
           "dataKeyReusePeriod": 5,
           "queueType": "standardQueue",
-          "defaultVisibilityTimeout": "1",
+          "defaultVisibilityTimeout": "60",
           "defaultVisibilityTimeoutUnit": "seconds",
           "messageRetentionPeriod": 4,
           "messageRetentionPeriodUnit": "days",
@@ -101,7 +101,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1566453628515
+    "lastSave": 1566453728049
   },
   "VCS_STATE": {
     "provider": "GitHub",
