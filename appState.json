@@ -1,0 +1,113 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "622ff3a3-0069-409d-bc3d-ca17ddd796b9": {
+        "id": "622ff3a3-0069-409d-bc3d-ca17ddd796b9",
+        "parent": null,
+        "name": "hiru2208_awssmoke",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "6906700b-b20a-4c33-961a-254bd0863128"
+        ],
+        "isRemovable": false,
+        "filePath": "hiru2208_awssmoke"
+      },
+      "6906700b-b20a-4c33-961a-254bd0863128": {
+        "id": "6906700b-b20a-4c33-961a-254bd0863128",
+        "parent": "622ff3a3-0069-409d-bc3d-ca17ddd796b9",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "hiru2208_awssmoke/lambda.js",
+        "code": "exports.handler = function(event, context, callback) {\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": [],
+          "dqlARN": "arn:aws:sqs:us-east-1:318300609668:KTestSQS"
+        },
+        "triggers": [
+          {
+            "resourceName": "sqshirutest",
+            "config": {
+              "BatchSize": "10"
+            }
+          }
+        ]
+      }
+    },
+    "deletedFiles": [],
+    "rootNode": "622ff3a3-0069-409d-bc3d-ca17ddd796b9",
+    "openFiles": [
+      "6906700b-b20a-4c33-961a-254bd0863128"
+    ],
+    "currentFileId": "6906700b-b20a-4c33-961a-254bd0863128",
+    "resources": {
+      "sqshirutest": {
+        "name": "sqshirutest",
+        "type": "SQS",
+        "config": {
+          "mode": 0,
+          "existing": false,
+          "name": "hirutest",
+          "url": "https://sqs.us-east-1.amazonaws.com/318300609668/hirutest",
+          "selectedRegion": "us-east-1",
+          "deliveryDelay": 0,
+          "deliveryDelayUnit": "seconds",
+          "useRedrivePolicy": false,
+          "useSSE": false,
+          "kmsCustomerMasterKey": "default",
+          "accountId": "318300609668",
+          "dataKeyReusePeriod": 5,
+          "queueType": "standardQueue",
+          "defaultVisibilityTimeout": "1",
+          "defaultVisibilityTimeoutUnit": "seconds",
+          "messageRetentionPeriod": 4,
+          "messageRetentionPeriodUnit": "days",
+          "maximumMessageSize": 256,
+          "receiveMessageWaitTime": 0,
+          "deadLetterQueueName": "",
+          "contentBasedDeduplication": false
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": {}
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {}
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "hiru2208_awssmoke",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1566453628515
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "hiru2208_awssmoke",
+      "url": "https://github.com/HirudineeADRT/hiru2208_awssmoke"
+    }
+  }
+}
